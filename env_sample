@@ -1,0 +1,9 @@
+# MongoDB Atlas Connection URI
+MONGODB_URI = "mongodb+srv://<username>:<password>@mongodbconnection.cilaa8h.mongodb.net/?retryWrites=true&w=majority&appName=MongodbConnection"
+
+# MongoDB Database and Collection Names
+DATABASE_NAME= "vectorDb"
+COLLECTION_NAME="vectorCollection"
+
+# OpenAI API Key
+OPENAI_API_KEY="sk-proj-xxxxxxxx"
