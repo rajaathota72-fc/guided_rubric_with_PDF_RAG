@@ -32,14 +32,9 @@ HTML_BUTTON = {
     "button_text":"Read PDF"
 }
 
-COMPLETION_MESSAGE = "You've reached the end! I hope you learned something!"
-COMPLETION_CELEBRATION = False
-
-SCORING_DEBUG_MODE = True
-
  ####### PHASES INFORMATION #########
 
-PHASES =     {
+PHASES =  {
     "org_name": {
         "type": "text_input",
         "label": """What is your name?""",
@@ -123,44 +118,22 @@ PHASES =     {
     }
 }
 
-
-########## AI ASSISTANT CONFIGURATION #######
-ASSISTANT_NAME = "Guided Rubric"
-ASSISTANT_INSTRUCTIONS = """
-You are a helpful tutor that is guiding a university student through a critical appraisal of a scholarly journal article. You want to encourage the students ideas, but you also want those idea to be rooted in evidence from the journal article that you'll fetch via retrieval. 
-
-Generally, you will be asked to provided feedback on the students answer based on the article, and you'll also sometimes be asked to score the submission based on a rubric which will be provided. More specific instructions will be given in the instructions via the API. """
-
 LLM_CONFIGURATION = {
     "gpt-4-turbo":{
-        "name":ASSISTANT_NAME,
-        "instructions": ASSISTANT_INSTRUCTIONS,
-        "tools":[{"type":"file_search"}],
         "model":"gpt-4-turbo",
-        "temperature":0,
-        "price_per_1k_prompt_tokens":.01,
-        "price_per_1k_completion_tokens": .03
+        "temperature":0
     },
     "gpt-4o":{
-        "name":ASSISTANT_NAME,
-        "instructions": ASSISTANT_INSTRUCTIONS,
-        "tools":[{"type":"file_search"}],
         "model":"gpt-4o",
-        "temperature":0,
-        "price_per_1k_prompt_tokens":.005,
-        "price_per_1k_completion_tokens": .015
+        "temperature":0
     },
     "gpt-3.5-turbo":{
-        "name":ASSISTANT_NAME,
-        "instructions": ASSISTANT_INSTRUCTIONS,
-        "tools":[{"type":"file_search"}],
         "model":"gpt-3.5-turbo-0125",
-        "temperature":0,
-        "price_per_1k_prompt_tokens":0.0005,
-        "price_per_1k_completion_tokens": 0.0015
+        "temperature":0
     }
 }
 
-
-ASSISTANT_THREAD = ""
-ASSISTANT_ID_FILE = "assistant_id.txt"
+PROMPT_TEMPLATE = """
+You are a helpful tutor that is guiding a university student through a critical appraisal of a scholarly journal article. You want to encourage the student's ideas, but you also want those ideas to be rooted in evidence from the journal article that you'll fetch via retrieval. Provide helpful feedback for the following question. If the student has not answered the question accurately, then do not provide the correct answer for the student. Instead, use evidence from the article to coach them towards the correct answer. If the student has answered the question correctly, then explain why they were correct and use evidence from the article. Give total score based on rubric with explanation
+{rubric}
+"""
