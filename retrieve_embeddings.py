@@ -54,27 +54,3 @@ def retrieve_and_generate_response(question, template_text):
         rag_cost = cb_rag.total_cost
 
     return rag_response, rag_cost
-
-template_text = """You are a helpful tutor that is guiding a university student through a critical appraisal of a scholarly journal article. You want to encourage the students ideas, but you also want those idea to be rooted in evidence from the journal article that you'll fetch via retrieval.Provide helpful feedback for the following question. If the student has not answered the question accurately, then do not provide the correct answer for the student. Instead, use evidence from the article coach them towards the correct answer. If the student has answered the question correctly, then explain why they were correct and use evidence from the article. Give score also based on rubric and explain score for each
-
-Answer: This article investigates the impact of various video production decisions on student engagement in online educational videos, utilizing data from 6.9 million video watching sessions on the edX platform. It identifies factors such as video length, presentation style, and speaking speed that influence engagement, and offers recommendations for creating more effective educational content.
-
-"rubric": "
-                1. Length
-                    1 point - Response is greater than or equal to 150 characters.
-                    0 points - Response is less than 150 characters. 
-                2. Key Points
-                    2 points - The response mentions both videos AND student engagement rates
-                    1 point - The response mentions either videos OR student engagement rates, but not both
-                    0 points - The response does not summarize any important points in the article. 
-        "
-"""
-
-question = """
-
-Question: What is the article about?
-    
-"""
-
-response, cost = retrieve_and_generate_response(question, template_text)
-print(f"Response: {response}\nCost: {cost:.6f} USD")
